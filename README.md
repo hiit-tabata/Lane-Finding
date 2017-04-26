@@ -298,8 +298,17 @@ def drawCurvature(rgbImg, curvature):
 
 ### Pipeline (video)
 
-Provide a link to your final video output. Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!)
+    Provide a link to your final video output. Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!)
 ---
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=iHHnLQSj7qI
-" target="_blank"><img src="http://img.youtube.com/vi/iHHnLQSj7qI/0.jpg"
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=aoxDgevFNkY" target="_blank"><img src="http://img.youtube.com/vi/aoxDgevFNkY/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+----
+### discussion
+ Briefly discuss any problems / issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?
+1. compuration speed
+  Hough transform need a heavy computation compare to canny edge method.
+2. Hard time in tunning.
+  Tuning the threshold is a hard time, i use most of the time in tuning those params.
+##### Potential improvement
+1. Use GPU it gives a pseed improvement
+2. Use Neural network For image segmentation.
