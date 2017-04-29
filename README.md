@@ -247,28 +247,30 @@ Describe how (and identify where in your code) you calculated the radius of curv
 
 I use the standard ratio to calculate the curverad, then using yAxis value to calculate the curverad.
 ```python
+
+ym_per_pix = 15/720 # meters per pixel in y dimension
+xm_per_pix = 3.7/900 # meters per pixel in x dimension
+
 def calCurvature(yVals, x):
     y_eval = np.max(yVals)
-    ym_per_pix = 30/720 # meters per pixel in y dimension
-    xm_per_pix = 3.7/700 # meters per pixel in x dimension
 
     fit_cr = np.polyfit(ploty*ym_per_pix, x*xm_per_pix, 2)
     curverad = ((1 + (2*fit_cr[0]*y_eval*ym_per_pix + fit_cr[1])**2)**1.5) / np.absolute(2*fit_cr[0])
+#     print(curverad, 'm')
     return curverad
 ```
 First i get maximum left and right point, then i compare the center of img with the center of left_right.   
 ```python
-def findOffCenter(img, pts):
+def findOffCenter(img, left_fitx, right_fitx):
     '''
         Find how far the car off the center
     '''
-    pts = pts[0]
     position = img.shape[1]/2
-    left  = np.min(pts[:,0]) #np.min(pts[(pts[:,1] < position) & (pts[:,0] > 700)][:,1])
-    right = np.max(pts[:,0]) #np.max(pts[(pts[:,1] > position) & (pts[:,0] > 700)][:,1])
+    left  = left_fitx[-1] #np.min(pts[(pts[:,1] < position) & (pts[:,0] > 700)][:,1])
+    right = right_fitx[-1] #np.max(pts[(pts[:,1] > position) & (pts[:,0] > 700)][:,1])
     center = (left + right)/2
-    xm_per_pix = 3.7/700
-    res = (position - center)*xm_per_pix
+    res = (640 - center)*xm_per_pix
+#     print(res, 'm')
     return res
 ```
 
@@ -300,7 +302,7 @@ def drawCurvature(rgbImg, curvature):
 
     Provide a link to your final video output. Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!)
 ---
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=aoxDgevFNkY" target="_blank"><img src="http://img.youtube.com/vi/aoxDgevFNkY/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=oOUIOLuphRQ" target="_blank"><img src="http://img.youtube.com/vi/oOUIOLuphRQ/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ----
 ### discussion
