@@ -307,10 +307,12 @@ def drawCurvature(rgbImg, curvature):
 ----
 ### discussion
  Briefly discuss any problems / issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?
-1. compuration speed
-  Hough transform need a heavy computation compare to canny edge method.
+1. Not stable in challenge_video
+   It perform worest in challenge video, when car enter below of the  bridge, it detect wrong lanes. It manage wrong edges in the filter part. 
 2. Hard time in tunning.
   Tuning the threshold is a hard time, i use most of the time in tuning those params.
+
+
 ##### Potential improvement
-1. Use GPU it gives a pseed improvement
+1. Should try different filter for get better performace in challenge video. It can also create a detail mask to filter those nosiy points, for instance, the color changes in the center of challenge video. It could increase the perfromace.
 2. Use Neural network For image segmentation.
